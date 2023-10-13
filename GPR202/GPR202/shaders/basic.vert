@@ -2,7 +2,7 @@
 
 layout (location = 0) in vec3 vertexPositionIn;
 layout (location = 1) in vec3 vertexNormalIn;
-layout (location = 2) in vec4 vertexColourIn:
+layout (location = 2) in vec4 vertexColourIn;
 layout (location = 3) in vec2 vertexUVCoordinatesIn;
 
 out vec3 vertexPosition;
@@ -18,5 +18,5 @@ void main()
 	vertexNormal = vertexNormalIn;
 	vertexColour = vertexColourIn;
 	vertexUVCoordinates = mat2(0.0, -1.0, 1.0, 0.0) * vertexUVCoordinatesIn;
-	gl_Position = vec4(vertexPosition, 1.0f);
+	gl_Position = vec4(vertexPosition.x, vertexPosition.y, 0.0, 1.0);
 }

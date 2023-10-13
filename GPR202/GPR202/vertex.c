@@ -7,15 +7,21 @@
 Vertex* vertex_construct_vertex(Position _position, Normal _normal, Colour _colour, UVCoord _uvcoord)
 {
 	Vertex* vertex = (Vertex*)malloc(sizeof(Vertex));
+	//vertex->position = NULL;
+
 	vertex->position = (Position*)malloc(sizeof(Position));
+	if (vertex->position == NULL) printf("vertex->position == NULL\n");
 	vertex->position = &_position;
 	printf("vertex_construct_vertex: vertex->position: x = %.1f, y = %.1f, z = %.1f\n", vertex->position->x, vertex->position->y, vertex->position->z);
 	printf("vertex_construct_vertex: _position: x = %.1f, y = %.1f, z = %.1f\n", _position.x, _position.y, _position.z);
 	vertex->normal = (Normal*)malloc(sizeof(Normal));
+	if (vertex->normal == NULL) printf("vertex->normal == NULL\n");
 	vertex->normal = &_normal;
 	vertex->colour = (Colour*)malloc(sizeof(Colour));
+	if (vertex->colour == NULL) printf("vertex->colour == NULL\n");
 	vertex->colour = &_colour;
 	vertex->uvcoord = (UVCoord*)malloc(sizeof(UVCoord));
+	if (vertex->uvcoord == NULL) printf("vertex->uvcoord == NULL\n");
 	vertex->uvcoord = &_uvcoord;
 
 	return vertex;

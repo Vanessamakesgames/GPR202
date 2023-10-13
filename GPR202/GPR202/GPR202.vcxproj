@@ -106,7 +106,7 @@
     <ClCompile>
       <WarningLevel>EnableAllWarnings</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard_C>stdc11</LanguageStandard_C>
     </ClCompile>
@@ -133,14 +133,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ebo.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mesh.c" />
+    <ClCompile Include="render.c" />
+    <ClCompile Include="shader.c" />
     <ClCompile Include="texture.c" />
+    <ClCompile Include="vao.c" />
+    <ClCompile Include="vbo.c" />
     <ClCompile Include="vertex.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ebo.h" />
     <ClInclude Include="mesh.h" />
+    <ClInclude Include="render.h" />
+    <ClInclude Include="shader.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="vao.h" />
     <ClInclude Include="vbo.h" />

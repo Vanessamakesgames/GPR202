@@ -1,18 +1,10 @@
-﻿  mesh.c
+﻿  ebo.c
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(235,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(275,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(358,42): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\texture.h(10,18): warning C4820: 'Texture': '4' bytes padding added after data member 'ID'
-E:\GitHub\GPR202\GPR202\GPR202\texture.h(12,1): warning C4820: 'Texture': '4' bytes padding added after data member 'slot'
-E:\GitHub\GPR202\GPR202\GPR202\Mesh.h(14,1): warning C4820: 'Mesh': '4' bytes padding added after data member 'vao'
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18,10): warning C4477: 'printf' : format string '%.1f' requires an argument of type 'double', but variadic argument 2 has type 'GLfloat *'
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18,10): warning C4477: 'printf' : format string '%.1f' requires an argument of type 'double', but variadic argument 3 has type 'GLfloat *'
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18,10): warning C4477: 'printf' : format string '%.1f' requires an argument of type 'double', but variadic argument 4 has type 'GLfloat *'
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(41,25): warning C4100: '_mesh': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(27): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(23): message : index 'i' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(27): message : feeds call on this line
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(14): message : index 'i' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18): message : feeds call on this line
+E:\GitHub\GPR202\GPR202\GPR202\ebo.h(14,18): warning C4255: 'ebo_unbind': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\ebo.c(17,1): warning C4255: 'ebo_unbind': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\ebo.c(23,29): warning C4047: 'function': 'const GLuint *' differs in levels of indirection from 'GLuint'
+E:\GitHub\GPR202\GPR202\GPR202\ebo.c(23,25): warning C4024: '__glewDeleteBuffers': different types for formal and actual parameter 2
+E:\GitHub\GPR202\GPR202\GPR202\ebo.c(9): warning C4716: 'ebo_construct_ebo': must return a value
   GPR202.vcxproj -> E:\GitHub\GPR202\GPR202\x64\Debug\GPR202.exe

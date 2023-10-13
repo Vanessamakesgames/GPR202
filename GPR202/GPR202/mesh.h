@@ -5,6 +5,7 @@
 #include "texture.h"
 #include "vao.h"
 
+
 typedef struct Mesh
 {
 	Vertex* vertices;
@@ -13,7 +14,7 @@ typedef struct Mesh
 	VAO vao;
 } Mesh;
 
-void /*Mesh**/ mesh_construct_mesh(Vertex* _vertices, int _numberOfVertices, GLuint* _indices, int _numberOfIndices/*, Texture* _textures, int _numberOfTextures*/);
+Mesh* mesh_construct_mesh(Vertex** _vertices, int _numberOfVertices, GLuint* _indices, int _numberOfIndices, Texture** _textures, int _numberOfTextures);
 void mesh_cleanup(Mesh* _mesh);
 
 #endif
