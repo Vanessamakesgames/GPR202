@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define GLEW_STATIC
-#include <glew/glew.h>
-#include <glfw/glfw3.h>
+#include <glew.h>
+#include <glfw3.h>
 #include <time.h>
 #include <stdbool.h>
 #include "mesh.h"
@@ -64,7 +64,7 @@ int main(void)
 
 	// Set up face culling
 	glFrontFace(GL_CCW);
-	
+
 	// 3D stuff
 	//glEnable(GL_DEPTH_TEST);
 	//glDepthFunc(GL_LESS);
@@ -75,7 +75,7 @@ int main(void)
 
 	//Vertex* v = vertex_construct_vertex(vertex_construct_position(1.0f, 1.0f, 1.0f), vertex_construct_normal(1.0f, 1.0f, 1.0f), vertex_construct_colour(1.0f, 1.0f, 1.0f, 1.0f), vertex_construct_uvcoord(1.0f, 1.0f));
 
-	Vertex* vert = vertex_construct_vertex(
+	/*Vertex* vert = vertex_construct_vertex(
 					vertex_construct_position(0.1f, 0.2f, 0.3f),
 					vertex_construct_normal(0.4f, 0.5f, 0.6f),
 					vertex_construct_colour(0.7f, 0.8f, 0.90f, 1.0f),
@@ -90,21 +90,29 @@ int main(void)
 		{vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))},
 		{vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))},
 		{vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))}
-	};
-
-	// does not work
-	/*Vertex* pVerts = (Vertex*)malloc(sizeof(Vertex) * 5);
-	pVerts = (Vertex){
-		vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f)),
-		vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f)),
-		vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f)),
-		vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f)),
-		vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))
 	};*/
 
-	GLuint inds = { 0 };
+	Vertex* triangleVertices[3] = {
+		{vertex_construct_vertex(vertex_construct_position(1.0f, -1.0f, 1.0f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(1.0f, 1.0f, 1.0f, 1.0f), vertex_construct_uvcoord(1.0f, 0.0f))},
+		{vertex_construct_vertex(vertex_construct_position(-1.0f, -1.0f, 1.0f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(1.0f, 1.0f, 1.0f, 1.0f), vertex_construct_uvcoord(0.0f, 0.0f))},
+		{vertex_construct_vertex(vertex_construct_position(0.0f, 1.0f, 1.0f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(1.0f, 1.0f, 1.0f, 1.0f), vertex_construct_uvcoord(0.5f, 1.0f))}
+	};
 
-	Mesh* mesh = mesh_construct_mesh(verts, 5, inds, 1);
+	GLuint triangleIndices[3] = { 0, 1, 2 };
+
+	//Texture triangleTextures[1] = { texture_construct_texture("filePath", "textureType", 0) };
+	printf("main: x = %.1f, y = %.1f, z = %.1f\n", triangleVertices[0]->position->x, triangleVertices[0]->position->y, triangleVertices[0]->position->z);
+	printf("main: x = %.1f, y = %.1f, z = %.1f\n", triangleVertices[1]->position->x, triangleVertices[1]->position->y, triangleVertices[1]->position->z);
+	printf("main: x = %.1f, y = %.1f, z = %.1f\n", triangleVertices[2]->position->x, triangleVertices[2]->position->y, triangleVertices[2]->position->z);
+
+	/*Mesh* triangleMesh = */mesh_construct_mesh(triangleVertices, 3, triangleIndices, 3/*, triangleTextures, 1*/);
+
+	//mesh_cleanup(triangleMesh);
+	// having these causes errors?
+	//free(triangleMesh);
+	//free(triangleVertices);
+	//free(triangleTextures);
+	//free(triangleIndices);
 
 	bool gameplayLoop = true;
 

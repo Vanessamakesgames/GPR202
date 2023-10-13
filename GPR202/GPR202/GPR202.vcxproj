@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>dependencies;dependencies/glew;dependencies/glfw;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>dependencies;dependencies/glew;dependencies/glfw;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
+    <IncludePath>dependencies;dependencies/glew;dependencies/glfw;dependencies/stb;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LibraryPath>dependencies;dependencies/glew;dependencies/glfw;dependencies/stb;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -135,12 +135,20 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="mesh.c" />
+    <ClCompile Include="texture.c" />
     <ClCompile Include="vertex.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ebo.h" />
     <ClInclude Include="mesh.h" />
     <ClInclude Include="texture.h" />
+    <ClInclude Include="vao.h" />
+    <ClInclude Include="vbo.h" />
     <ClInclude Include="vertex.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\basic.frag" />
+    <None Include="shaders\basic.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

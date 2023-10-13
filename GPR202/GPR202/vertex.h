@@ -2,7 +2,7 @@
 #define VERTEX_H
 
 #define GLEW_STATIC
-#include "dependencies/glew/glew.h"
+#include <glew.h>
 
 typedef struct Position
 {

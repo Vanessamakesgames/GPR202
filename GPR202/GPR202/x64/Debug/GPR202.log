@@ -1,38 +1,18 @@
-﻿  main.c
+﻿  mesh.c
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(235,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(275,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(358,42): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\dependencies\glfw\glfw3.h(1702,1): warning C4820: 'GLFWgammaramp': '4' bytes padding added after data member 'size'
-E:\GitHub\GPR202\GPR202\GPR202\dependencies\glfw\glfw3.h(1750,18): warning C4820: 'GLFWgamepadstate': '1' bytes padding added after data member 'buttons'
-E:\GitHub\GPR202\GPR202\GPR202\texture.h(9,18): warning C4820: 'Texture': '4' bytes padding added after data member 'ID'
-E:\GitHub\GPR202\GPR202\GPR202\texture.h(11,1): warning C4820: 'Texture': '4' bytes padding added after data member 'slot'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(9,23): warning C4100: 'error': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(13,145): warning C4100: 'unused4': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(13,101): warning C4100: 'unused3': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(13,67): warning C4100: 'unused2': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(13,39): warning C4100: 'unused': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(86,2): warning C4013: 'free' undefined; assuming extern returning int
-  mesh.c
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(235,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(275,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(358,42): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\texture.h(9,18): warning C4820: 'Texture': '4' bytes padding added after data member 'ID'
-E:\GitHub\GPR202\GPR202\GPR202\texture.h(11,1): warning C4820: 'Texture': '4' bytes padding added after data member 'slot'
-  vertex.c
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(235,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(275,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(358,42): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-  Generating Code...
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(24): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(22): message : index 'i' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(24): message : feeds memory load on this line
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(19): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(17): message : index 'i' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(19): message : feeds memory load on this line
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(14): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(12): message : index 'i' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\mesh.c(14): message : feeds memory load on this line
-E:\GitHub\GPR202\GPR202\GPR202\main.c(17): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\main.c(15): message : index 'severity' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\main.c(17): message : feeds call on this line
+E:\GitHub\GPR202\GPR202\GPR202\texture.h(10,18): warning C4820: 'Texture': '4' bytes padding added after data member 'ID'
+E:\GitHub\GPR202\GPR202\GPR202\texture.h(12,1): warning C4820: 'Texture': '4' bytes padding added after data member 'slot'
+E:\GitHub\GPR202\GPR202\GPR202\Mesh.h(14,1): warning C4820: 'Mesh': '4' bytes padding added after data member 'vao'
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18,10): warning C4477: 'printf' : format string '%.1f' requires an argument of type 'double', but variadic argument 2 has type 'GLfloat *'
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18,10): warning C4477: 'printf' : format string '%.1f' requires an argument of type 'double', but variadic argument 3 has type 'GLfloat *'
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18,10): warning C4477: 'printf' : format string '%.1f' requires an argument of type 'double', but variadic argument 4 has type 'GLfloat *'
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(41,25): warning C4100: '_mesh': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(27): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(23): message : index 'i' range checked by comparison on this line
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(27): message : feeds call on this line
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(14): message : index 'i' range checked by comparison on this line
+E:\GitHub\GPR202\GPR202\GPR202\mesh.c(18): message : feeds call on this line
   GPR202.vcxproj -> E:\GitHub\GPR202\GPR202\x64\Debug\GPR202.exe

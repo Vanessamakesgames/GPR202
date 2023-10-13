@@ -2,11 +2,15 @@
 
 #include <stdlib.h>
 
+#include <stdio.h>
+
 Vertex* vertex_construct_vertex(Position _position, Normal _normal, Colour _colour, UVCoord _uvcoord)
 {
 	Vertex* vertex = (Vertex*)malloc(sizeof(Vertex));
 	vertex->position = (Position*)malloc(sizeof(Position));
 	vertex->position = &_position;
+	printf("vertex_construct_vertex: vertex->position: x = %.1f, y = %.1f, z = %.1f\n", vertex->position->x, vertex->position->y, vertex->position->z);
+	printf("vertex_construct_vertex: _position: x = %.1f, y = %.1f, z = %.1f\n", _position.x, _position.y, _position.z);
 	vertex->normal = (Normal*)malloc(sizeof(Normal));
 	vertex->normal = &_normal;
 	vertex->colour = (Colour*)malloc(sizeof(Colour));
@@ -23,6 +27,8 @@ Position vertex_construct_position(GLfloat _positionX, GLfloat _positionY, GLflo
 	position.x = _positionX;
 	position.y = _positionY;
 	position.z = _positionZ;
+
+	printf("vertex_construct_position: x = % .1f, y = %.1f, z = %.1f\n", position.x, position.y, position.z);
 
 	return position;
 }
