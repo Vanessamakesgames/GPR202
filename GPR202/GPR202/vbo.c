@@ -8,12 +8,13 @@ VBO vbo_construct_vbo(Vertex** _vertices, int _numberOfVertices)
 	VBO vbo;
 	glGenBuffers(1, &vbo.ID);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo.ID);
-	glBufferData(GL_ARRAY_BUFFER, _numberOfVertices * sizeof(Vertex), *_vertices, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, _numberOfVertices * sizeof(Vertex), &_vertices, GL_STATIC_DRAW);
 	//glBindBuffer(GL_ARRAY_BUFFER, 0);
 
+	//printf("x = %.1f, y = %.1f, z = %.1f\n", *_vertices->position.x)
 	for (int i = 0; i < _numberOfVertices; i++)
 	{
-		printf("index = %d, value in _vertices[%d]->position.x = %.1f, value in _vertices[%d]->position.y = %.1f, value in _vertices[%d]->position.z = %.1f\n", i, i, _vertices[i]->position->x, i, _vertices[i]->position->y, i, _vertices[i]->position->z);
+		printf("vbo_construct_vbo: index = %d, value in _vertices[%d]->position.x = %.1f, value in _vertices[%d]->position.y = %.1f, value in _vertices[%d]->position.z = %.1f\n", i, i, _vertices[i]->position->x, i, _vertices[i]->position->y, i, _vertices[i]->position->z);
 	}
 
 	return vbo;

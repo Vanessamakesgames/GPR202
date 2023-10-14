@@ -1,10 +1,21 @@
-﻿  ebo.c
+﻿  main.c
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(235,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(275,41): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.22000.0\um\GL\glu.h(358,42): warning C4255: 'fn': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\ebo.h(14,18): warning C4255: 'ebo_unbind': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\ebo.c(17,1): warning C4255: 'ebo_unbind': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\ebo.c(23,29): warning C4047: 'function': 'const GLuint *' differs in levels of indirection from 'GLuint'
-E:\GitHub\GPR202\GPR202\GPR202\ebo.c(23,25): warning C4024: '__glewDeleteBuffers': different types for formal and actual parameter 2
-E:\GitHub\GPR202\GPR202\GPR202\ebo.c(9): warning C4716: 'ebo_construct_ebo': must return a value
+E:\GitHub\GPR202\GPR202\GPR202\dependencies\glfw\glfw3.h(1702,1): warning C4820: 'GLFWgammaramp': '4' bytes padding added after data member 'size'
+E:\GitHub\GPR202\GPR202\GPR202\dependencies\glfw\glfw3.h(1750,18): warning C4820: 'GLFWgamepadstate': '1' bytes padding added after data member 'buttons'
+E:\GitHub\GPR202\GPR202\GPR202\texture.h(10,18): warning C4820: 'Texture': '4' bytes padding added after data member 'ID'
+E:\GitHub\GPR202\GPR202\GPR202\texture.h(12,1): warning C4820: 'Texture': '4' bytes padding added after data member 'slot'
+E:\GitHub\GPR202\GPR202\GPR202\vbo.h(15,18): warning C4255: 'vbo_unbind': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\vao.h(13,24): warning C4255: 'vao_construct_vao': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\vao.h(16,18): warning C4255: 'vao_unbind': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\mesh.h(15,1): warning C4820: 'Mesh': '4' bytes padding added after data member 'vao'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(12,23): warning C4100: 'error': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(16,145): warning C4100: 'unused4': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(16,101): warning C4100: 'unused3': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(16,67): warning C4100: 'unused2': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(16,39): warning C4100: 'unused': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(20): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+E:\GitHub\GPR202\GPR202\GPR202\main.c(18): message : index 'severity' range checked by comparison on this line
+E:\GitHub\GPR202\GPR202\GPR202\main.c(20): message : feeds call on this line
   GPR202.vcxproj -> E:\GitHub\GPR202\GPR202\x64\Debug\GPR202.exe
