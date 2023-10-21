@@ -3,14 +3,16 @@
 layout (location = 0) in vec3 vertexPositionIn;
 layout (location = 1) in vec4 vertexColourIn;
 
-out vec3 vertexPosition;
 out vec4 vertexColour;
 
-// add uniforms for mat4s once program has capacity for them
+uniform mat4 translationMatrix;
+uniform mat4 rotationMatrix;
+uniform mat4 scaleMatrix;
+uniform mat4 viewMatrix;
 
 void main()
 {
-	vertexPosition = vertexPositionIn;
+	mat4 model = translationMatrix * rotationMatrix * scaleMatrix;
 	vertexColour = vertexColourIn;
-	gl_Position = vec4(vertexPosition.x, vertexPosition.y, vertexPosition.z, 1.0);
+	gl_Position = viewMatrix * model * vec4(vertexPositionIn.x, vertexPositionIn.y, vertexPositionIn.z, 1.0);
 }

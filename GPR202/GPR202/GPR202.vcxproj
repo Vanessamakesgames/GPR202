@@ -133,24 +133,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ebo.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mesh.c" />
-    <ClCompile Include="render.c" />
+    <ClCompile Include="gameloop.c" />
     <ClCompile Include="shader.c" />
-    <ClCompile Include="texture.c" />
-    <ClCompile Include="vao.c" />
-    <ClCompile Include="vbo.c" />
-    <ClCompile Include="vertex.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ebo.h" />
     <ClInclude Include="mesh.h" />
-    <ClInclude Include="render.h" />
+    <ClInclude Include="gameloop.h" />
     <ClInclude Include="shader.h" />
-    <ClInclude Include="texture.h" />
-    <ClInclude Include="vao.h" />
-    <ClInclude Include="vbo.h" />
     <ClInclude Include="vertex.h" />
   </ItemGroup>
   <ItemGroup>

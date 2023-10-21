@@ -1,9 +1,4 @@
-E:\GitHub\GPR202\GPR202\GPR202\ebo.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\ebo.obj
 E:\GitHub\GPR202\GPR202\GPR202\main.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\main.obj
 E:\GitHub\GPR202\GPR202\GPR202\mesh.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\mesh.obj
-E:\GitHub\GPR202\GPR202\GPR202\render.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\render.obj
+E:\GitHub\GPR202\GPR202\GPR202\gameloop.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\gameloop.obj
 E:\GitHub\GPR202\GPR202\GPR202\shader.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\shader.obj
-E:\GitHub\GPR202\GPR202\GPR202\texture.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\texture.obj
-E:\GitHub\GPR202\GPR202\GPR202\vao.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\vao.obj
-E:\GitHub\GPR202\GPR202\GPR202\vbo.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\vbo.obj
-E:\GitHub\GPR202\GPR202\GPR202\vertex.c;E:\GitHub\GPR202\GPR202\GPR202\x64\Debug\vertex.obj

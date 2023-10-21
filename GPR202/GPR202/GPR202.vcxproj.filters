@@ -24,25 +24,10 @@
     <ClCompile Include="mesh.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="vertex.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="texture.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vao.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vbo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ebo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="shader.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="render.c">
+    <ClCompile Include="gameloop.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,22 +38,10 @@
     <ClInclude Include="mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ebo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vao.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="vbo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="shader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="render.h">
+    <ClInclude Include="gameloop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

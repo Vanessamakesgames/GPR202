@@ -4,13 +4,28 @@
 #include <glfw3.h>
 //#include <time.h>
 #include <stdbool.h>
-#include <cglm/include/cglm/cglm.h>
-#include <string.h>
-#include <stdlib.h>
-//#include "mesh.h"
+//#include <cglm/include/cglm/cglm.h>
+//#include <string.h>
 //#include <stdlib.h>
-//#include "shader.h"
-//#include "render.h"
+#include "mesh.h"
+//#include <stdlib.h>
+#include "shader.h"
+#include "gameloop.h"
+
+/* 
+A1 requirements:
+- 5 primitives
+- Primitives coloured with interpolated colors (no distinguishable lines between colours or triangles used to draw mesh)
+- matrices used for each mesh
+	- translation
+	- rotation
+	- scale
+- camera matrix provided to each mesh (view matrix)
+- video demonstrating primitives and explaining code as if assignment marker is a recruiter
+	- 2-4 minutes
+*/
+
+
 
 void glfw_onError(int error, const char* description)
 {
@@ -25,190 +40,6 @@ void gl_debug_message_callback(GLenum unused, GLenum type, GLuint unused2, GLenu
 			type, severity, message);
 		printf("%d\n", glGetError());
 	}
-}
-
-typedef struct Vertex
-{
-	vec3 position;
-	vec4 colour;
-} Vertex;
-
-typedef struct Mesh
-{
-	Vertex* vertices;
-	int numberOfVertices;
-	GLuint* indices;
-	int numberOfIndices;
-	GLuint vaoID;
-} Mesh;
-
-GLuint construct_vao()
-{
-	printf("Made it to construct vao\n");
-	GLuint ID;
-	glGenVertexArrays(1, &ID);
-	glBindVertexArray(ID);
-	return ID;
-}
-
-GLuint construct_vbo(Vertex _vertices[], int _numberOfVertices)
-{
-	printf("Made it to construct vbo\n");
-	GLuint ID;
-	glGenBuffers(1, &ID);
-	glBindBuffer(GL_ARRAY_BUFFER, ID);
-	glBufferData(GL_ARRAY_BUFFER, _numberOfVertices * sizeof(Vertex), _vertices, GL_STATIC_DRAW);
-	return ID;
-}
-
-GLuint construct_ebo(GLuint _indices[], int _numberOfIndices)
-{
-	GLuint ID;
-	glGenBuffers(1, &ID);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, _numberOfIndices * sizeof(GLuint), _indices, GL_STATIC_DRAW);
-	return ID;
-}
-
-GLuint construct_shaders(const char* _fileName)
-{
-	char* fileExtension = NULL;
-	GLuint vertexShaderID, fragmentShaderID, shaderProgramID;
-	
-	{
-#define BUFFER_SIZE 1024
-		FILE* file = NULL;
-		char buffer[BUFFER_SIZE];
-		char* fileName = malloc(sizeof(_fileName) + 5);
-		strcpy(fileName, _fileName);
-		fileExtension = ".vert";
-		fileName = strcat(fileName, fileExtension);
-		printf("%s\n", fileName);
-		file = fopen(fileName, "r");
-		if (file == 0)
-		{
-			printf("Failed to open vertex shader file: %s\n", fileName);
-			exit(1);
-		}
-
-		int bytesRead = fread(buffer, sizeof(char), BUFFER_SIZE, file);
-		buffer[bytesRead] = 0;
-		printf("%s\n", buffer);
-		fclose(file);
-		
-		const char* source_c_str = buffer;
-		vertexShaderID = glCreateShader(GL_VERTEX_SHADER);
-		glShaderSource(vertexShaderID, 1, &source_c_str, NULL);
-		glCompileShader(vertexShaderID);
-		GLint shaderCompilationResult;
-		glGetShaderiv(vertexShaderID, GL_COMPILE_STATUS, &shaderCompilationResult);
-		if (shaderCompilationResult == GL_FALSE)
-		{
-			GLchar info[1024];
-			glGetShaderInfoLog(vertexShaderID, sizeof(info), NULL, info);
-			printf("%s\n", info);
-			exit(2);
-		}
-	}
-	printf("Made it past vertex shader section\n");
-	{
-#define BUFFER_SIZE 1024
-		FILE* file = NULL;
-		char buffer[BUFFER_SIZE];
-		char* fileName = malloc(sizeof(_fileName) + 5);
-		strcpy(fileName, _fileName);
-		fileExtension = ".frag";
-		fileName = strcat(fileName, fileExtension);
-		file = fopen(fileName, "r");
-		if (file == 0)
-		{
-			printf("Failed to open fragment shader file: %s\n", fileName);
-			exit(3);
-		}
-
-		int bytesRead = fread(buffer, sizeof(char), BUFFER_SIZE, file);
-		buffer[bytesRead] = 0;
-		printf("%s\n", buffer);
-		fclose(file);
-
-		const char* source_c_str = buffer;
-		fragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
-		glShaderSource(fragmentShaderID, 1, &source_c_str, NULL);
-		glCompileShader(fragmentShaderID);
-		GLint shaderCompilationResult;
-		glGetShaderiv(fragmentShaderID, GL_COMPILE_STATUS, &shaderCompilationResult);
-		if (shaderCompilationResult == GL_FALSE)
-		{
-			GLchar info[1024];
-			glGetShaderInfoLog(fragmentShaderID, sizeof(info), NULL, info);
-			printf("%s\n", info);
-			exit(4);
-		}
-	}
-	printf("Made it past fragment shader section\n");
-	{
-		shaderProgramID = glCreateProgram();
-		if (shaderProgramID == 0)
-		{
-			printf("Failed to create shader program\n");
-			exit(5);
-		}
-
-		glAttachShader(shaderProgramID, vertexShaderID);
-		glAttachShader(shaderProgramID, fragmentShaderID);
-		glLinkProgram(shaderProgramID);
-
-		GLint shaderProgramLinkingResult;
-		glGetProgramiv(shaderProgramID, GL_LINK_STATUS, &shaderProgramLinkingResult);
-		if (shaderProgramLinkingResult == GL_FALSE)
-		{
-			GLchar info[1024];
-			glGetProgramInfoLog(shaderProgramID, sizeof(info), NULL, info);
-			printf("%s\n", info);
-			exit(6);
-		}
-	}
-	printf("Made it past shader program section\n");
-	glDeleteShader(vertexShaderID);
-	glDeleteShader(fragmentShaderID);
-
-	printf("Made it to end of construct shaders\n");
-
-	return shaderProgramID;
-}
-
-Mesh* construct_mesh(Vertex _vertices[], int _numberOfVertices, GLuint _indices[], int _numberOfIndices)
-{
-	printf("Made it to construct mesh\n");
-	Mesh* mesh = (Mesh*)malloc(sizeof(Mesh));
-	mesh->vertices = (Vertex*)malloc(sizeof(Vertex) * _numberOfVertices);
-	mesh->indices = (GLuint*)malloc(sizeof(GLuint) * _numberOfIndices);
-	mesh->vertices = _vertices;
-	mesh->indices = _indices;
-	mesh->numberOfVertices = _numberOfVertices;
-	mesh->numberOfIndices = _numberOfIndices;
-	mesh->vaoID = construct_vao();
-	GLuint vbo = construct_vbo(mesh->vertices, mesh->numberOfVertices);
-	GLuint ebo = construct_ebo(mesh->indices, mesh->numberOfIndices);
-
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(3 * sizeof(float)));
-
-	glBindVertexArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-	return mesh;
-}
-
-void render(GLuint _shaderProgramID, Mesh* _mesh)
-{
-	glUseProgram(_shaderProgramID);
-	glBindVertexArray(_mesh->vaoID);
-	glDrawElements(GL_TRIANGLES, _mesh->numberOfIndices, GL_UNSIGNED_INT, 0);
 }
 
 int main()
@@ -258,16 +89,80 @@ int main()
 	//glEnable(GL_DEPTH_TEST);
 	//glDepthFunc(GL_LESS);
 
-	Vertex vert1 = { .position = {1.0, 0.0, 1.0}, . colour = {1.0, 1.0, 0.0, 1.0} };
-	Vertex vert2 = { .position = {0.0, 1.0, 1.0}, . colour = {0.0, 1.0, 1.0, 1.0} };
-	Vertex vert3 = { .position = {-1.0, 0.0, 1.0}, . colour = {1.0, 0.0, 1.0, 1.0} };
+	// right angle triangle
+	Vertex rightAngleTriangleVert1 = { .position = {-0.5, 0.5, 1.0}, . colour = {1.0, 0.0, 0.0, 1.0} };
+	Vertex rightAngleTriangleVert2 = { .position = {-0.5, -0.5, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
+	Vertex rightAngleTriangleVert3 = { .position = {0.5, -0.5, 1.0}, . colour = {0.0, 0.0, 1.0, 1.0} };
+	Vertex rightAngleTriangleVerts[3] = { rightAngleTriangleVert1, rightAngleTriangleVert2, rightAngleTriangleVert3};
+	GLuint rightAngleTriangleIndices[3] = { 0, 1, 2 };
+	Mesh* rightAngleTriangle = mesh_construct_mesh(rightAngleTriangleVerts, 3, rightAngleTriangleIndices, 3);
 
-	Vertex verts[3] = {vert1, vert2, vert3};
-	GLuint indices[3] = { 0, 1, 2 };
+	vec3 rat_translation = { -0.5, 0.5, 0.0 };
+	mesh_translate(rightAngleTriangle, rat_translation);
+	vec3 rat_scale = { 0.25, 0.25, 1 };
+	mesh_scale(rightAngleTriangle, rat_scale);
 
-	Mesh* mesh = construct_mesh(verts, 3, indices, 3);
+	// isosceles triangle
+	Vertex isoscelesTriangleVert1 = { .position = {0.0, 1.0, 1.0}, . colour = {1.0, 0.0, 0.0, 1.0} };
+	Vertex isoscelesTriangleVert2 = { .position = {-0.5, -1.0, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
+	Vertex isoscelesTriangleVert3 = { .position = {0.5, -1.0, 1.0}, . colour = {0.0, 0.0, 1.0, 1.0} };
+	Vertex isoscelesTriangleVerts[3] = { isoscelesTriangleVert1, isoscelesTriangleVert2, isoscelesTriangleVert3 };
+	GLuint isoscelesTriangleIndices[3] = { 0, 1, 2 };
+	Mesh* isoscelesTriangle = mesh_construct_mesh(isoscelesTriangleVerts, 3, isoscelesTriangleIndices, 3);
 
-	GLuint shaderID = construct_shaders("shaders/simple");
+	vec3 it_translation = { -0.8, -0.5, 0.0 };
+	mesh_translate(isoscelesTriangle, it_translation);
+	vec3 it_scale = { 0.25, 0.25, 1 };
+	mesh_scale(isoscelesTriangle, it_scale);
+
+	// square
+	Vertex squareVert1 = { .position = {-0.5, 0.5, 1.0}, . colour = {1.0, 0.0, 0.0, 1.0} };
+	Vertex squareVert2 = { .position = {-0.5, -0.5, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
+	Vertex squareVert3 = { .position = {0.5, -0.5, 1.0}, . colour = {0.0, 0.0, 1.0, 1.0} };
+	Vertex squareVert4 = { .position = {0.5, 0.5, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
+	Vertex squareVerts[4] = { squareVert1, squareVert2, squareVert3, squareVert4 };
+	GLuint squareIndices[6] = { 0, 1, 3, 1, 2, 3 }; 
+	Mesh* square = mesh_construct_mesh(squareVerts, 4, squareIndices, 6);
+
+	vec3 s_translation = { 0.5, 0.5, 0.0 };
+	mesh_translate(square, s_translation);
+	vec3 s_scale = { 0.25, 0.25, 1 };
+	mesh_scale(square, s_scale);
+
+	// hexagon
+	Vertex hexagonVert1 = { .position = {-0.125, 0.25, 1.0}, . colour = {1.0, 0.0, 0.0, 1.0} };
+	Vertex hexagonVert2 = { .position = {-0.25, 0.0, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
+	Vertex hexagonVert3 = { .position = {-0.125, -0.25, 1.0}, . colour = {0.0, 0.0, 1.0, 1.0} };
+	Vertex hexagonVert4 = { .position = {0.125, -0.25, 1.0}, . colour = {1.0, 1.0, 0.0, 1.0} };
+	Vertex hexagonVert5 = { .position = {0.25, 0.0, 1.0}, . colour = {0.0, 1.0, 1.0, 1.0} };
+	Vertex hexagonVert6 = { .position = {0.125, 0.25, 1.0}, . colour = {1.0, 0.0, 1.0, 1.0} };
+	Vertex hexagonVerts[6] = { hexagonVert1, hexagonVert2, hexagonVert3, hexagonVert4, hexagonVert5, hexagonVert6 };
+	GLuint hexagonIndices[12] = { 0, 1, 5, 1, 4, 5, 1, 3, 4, 1, 2, 3 };
+	Mesh* hexagon = mesh_construct_mesh(hexagonVerts, 6, hexagonIndices, 12);
+
+	vec3 h_translation = { 0.8, -0.5, 0.0 };
+	mesh_translate(hexagon, h_translation);
+	vec3 h_scale = { 0.25, 0.25, 1 };
+	mesh_scale(hexagon, h_scale);
+
+	// circle
+	Mesh* circle = mesh_construct_circle_mesh(0.75f, 50);
+
+	vec3 c_translation = { 0.0, -0.5, 0.0 };
+	mesh_translate(circle, c_translation);
+	vec3 c_scale = { 0.25, 0.25, 1 };
+	mesh_scale(circle, c_scale);
+
+	Shader* shader = shader_construct_shader_program("shaders/simple");
+
+	mat4 viewMatrix;
+	vec3 cameraPosition = { 0.0f, 0.0f, 0.0f };
+	vec3 cameraDirection = { 0.0f, 0.0f, -1.0f };
+	vec3 cameraUp = { 0.0f, 1.0f, 0.0f };
+	glm_mat4_identity(viewMatrix);
+	glm_look(cameraPosition, cameraDirection, cameraUp, viewMatrix);
+
+	
 
 	bool gameplayLoop = true;
 	
@@ -277,13 +172,26 @@ int main()
 			glClearColor(1.0f, 1.0f, 0.9f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
 			glfwPollEvents();
-			//updates
-			//render
-			render(shaderID, mesh);
-			glBindVertexArray(0);
-			glUseProgram(0);
-		}
 
+			gameloop_update_mesh(shader->programID, rightAngleTriangle, viewMatrix);
+			gameloop_render_mesh(shader->programID, rightAngleTriangle);
+
+			gameloop_update_mesh(shader->programID, isoscelesTriangle, viewMatrix);
+			gameloop_render_mesh(shader->programID, isoscelesTriangle);
+
+			gameloop_update_mesh(shader->programID, square, viewMatrix);
+			gameloop_render_mesh(shader->programID, square);
+
+			gameloop_update_mesh(shader->programID, hexagon, viewMatrix);
+			gameloop_render_mesh(shader->programID, hexagon);
+
+			gameloop_update_mesh(shader->programID, circle, viewMatrix);			
+			gameloop_render_mesh(shader->programID, circle);
+
+			mesh_unbind_vao();
+			shader_deactivate_shader_program();
+		}
+		
 		return 0;
 }
 

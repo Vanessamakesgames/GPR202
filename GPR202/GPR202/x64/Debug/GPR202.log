@@ -28,26 +28,21 @@ E:\GitHub\GPR202\GPR202\GPR202\dependencies\cglm\include\cglm\clipspace\project_
 E:\GitHub\GPR202\GPR202\GPR202\dependencies\cglm\include\cglm\clipspace\project_no.h(12,1): warning C4464: relative include path contains '..'
 E:\GitHub\GPR202\GPR202\GPR202\dependencies\cglm\include\cglm\clipspace\project_no.h(13,1): warning C4464: relative include path contains '..'
 E:\GitHub\GPR202\GPR202\GPR202\dependencies\cglm\include\cglm\clipspace\project_no.h(14,1): warning C4464: relative include path contains '..'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(15,23): warning C4100: 'error': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(19,145): warning C4100: 'unused4': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(19,101): warning C4100: 'unused3': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(19,67): warning C4100: 'unused2': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(19,39): warning C4100: 'unused': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(33,13): warning C4324: 'Vertex': structure was padded due to alignment specifier
-E:\GitHub\GPR202\GPR202\GPR202\main.c(33,13): warning C4820: 'Vertex': '4' bytes padding added after data member 'position'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(40,17): warning C4820: 'Mesh': '4' bytes padding added after data member 'numberOfVertices'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(46,1): warning C4255: 'construct_vao': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(94,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-E:\GitHub\GPR202\GPR202\GPR202\main.c(129,19): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-E:\GitHub\GPR202\GPR202\GPR202\main.c(192,9): warning C4189: 'ebo': local variable is initialized but not referenced
-E:\GitHub\GPR202\GPR202\GPR202\main.c(215,1): warning C4255: 'main': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(23): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\main.c(21): message : index 'severity' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\main.c(23): message : feeds call on this line
-E:\GitHub\GPR202\GPR202\GPR202\main.c(132): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\main.c(130): message : index '' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\main.c(132): message : feeds call on this line
-E:\GitHub\GPR202\GPR202\GPR202\main.c(97): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\main.c(95): message : index '' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\main.c(97): message : feeds call on this line
+E:\GitHub\GPR202\GPR202\GPR202\vertex.h(9,13): warning C4324: 'Vertex': structure was padded due to alignment specifier
+E:\GitHub\GPR202\GPR202\GPR202\vertex.h(9,13): warning C4820: 'Vertex': '4' bytes padding added after data member 'position'
+E:\GitHub\GPR202\GPR202\GPR202\mesh.h(12,17): warning C4820: 'Mesh': '4' bytes padding added after data member 'numberOfVertices'
+E:\GitHub\GPR202\GPR202\GPR202\mesh.h(25,28): warning C4255: 'mesh_construct_vao': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\mesh.h(30,23): warning C4255: 'mesh_unbind_vao': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\shader.h(16,40): warning C4255: 'shader_deactivate_shader_program': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(30,23): warning C4100: 'error': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(34,145): warning C4100: 'unused4': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(34,101): warning C4100: 'unused3': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(34,67): warning C4100: 'unused2': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(34,39): warning C4100: 'unused': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(46,1): warning C4255: 'main': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(113,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(143,23): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(38): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+E:\GitHub\GPR202\GPR202\GPR202\main.c(36): message : index 'severity' range checked by comparison on this line
+E:\GitHub\GPR202\GPR202\GPR202\main.c(38): message : feeds call on this line
   GPR202.vcxproj -> E:\GitHub\GPR202\GPR202\x64\Debug\GPR202.exe
