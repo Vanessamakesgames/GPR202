@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
+// generic mesh constructor
 Mesh* mesh_construct_mesh(Vertex _vertices[], int _numberOfVertices, GLuint _indices[], int _numberOfIndices)
 {
 	Mesh* mesh = (Mesh*)malloc(sizeof(Mesh));
@@ -31,6 +32,7 @@ Mesh* mesh_construct_mesh(Vertex _vertices[], int _numberOfVertices, GLuint _ind
 	return mesh;
 }
 
+// circle mesh constructor
 Mesh* mesh_construct_circle_mesh(float _radius, int _numberOfVertices)
 {
 	const float PI = 3.1415926f;
@@ -96,6 +98,7 @@ Mesh* mesh_construct_circle_mesh(float _radius, int _numberOfVertices)
 	return mesh;
 }
 
+// slightly better circle mesh constructor
 Mesh* mesh_construct_better_circle_mesh(float _radius, int _numberOfVertices)
 {
 	const float PI = 3.1415926f;

@@ -2,30 +2,10 @@
 #define GLEW_STATIC
 #include <glew.h>
 #include <glfw3.h>
-//#include <time.h>
 #include <stdbool.h>
-//#include <cglm/include/cglm/cglm.h>
-//#include <string.h>
-//#include <stdlib.h>
 #include "mesh.h"
-//#include <stdlib.h>
 #include "shader.h"
 #include "gameloop.h"
-
-/* 
-A1 requirements:
-- 5 primitives
-- Primitives coloured with interpolated colors (no distinguishable lines between colours or triangles used to draw mesh)
-- matrices used for each mesh
-	- translation
-	- rotation
-	- scale
-- camera matrix provided to each mesh (view matrix)
-- video demonstrating primitives and explaining code as if assignment marker is a recruiter
-	- 2-4 minutes
-*/
-
-
 
 void glfw_onError(int error, const char* description)
 {
@@ -77,7 +57,7 @@ int main()
 		return 3;
 	}
 
-	//	// OpenGL debugging
+	// OpenGL debugging
 	glEnable(GL_DEBUG_OUTPUT);
 	glDebugMessageCallback(gl_debug_message_callback, 0);
 	glfwSetErrorCallback(glfw_onError);
@@ -85,15 +65,13 @@ int main()
 	// Set up face culling
 	glFrontFace(GL_CCW);
 
-	// 3D stuff
-	//glEnable(GL_DEPTH_TEST);
-	//glDepthFunc(GL_LESS);
-
 	// right angle triangle
-	Vertex rightAngleTriangleVert1 = { .position = {-0.5, 0.5, 1.0}, . colour = {1.0, 0.0, 0.0, 1.0} };
-	Vertex rightAngleTriangleVert2 = { .position = {-0.5, -0.5, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
-	Vertex rightAngleTriangleVert3 = { .position = {0.5, -0.5, 1.0}, . colour = {0.0, 0.0, 1.0, 1.0} };
-	Vertex rightAngleTriangleVerts[3] = { rightAngleTriangleVert1, rightAngleTriangleVert2, rightAngleTriangleVert3};
+	Vertex rightAngleTriangleVerts[3] =
+	{
+		[0].position = {-0.5, 0.5, 1.0},	[0].colour = {1.0, 0.0, 0.0, 1.0},
+		[1].position = {-0.5, -0.5, 1.0},	[1].colour = {0.0, 1.0, 0.0, 1.0},
+		[2].position = {0.5, -0.5, 1.0},	[2].colour = {0.0, 0.0, 1.0, 1.0}
+	};
 	GLuint rightAngleTriangleIndices[3] = { 0, 1, 2 };
 	Mesh* rightAngleTriangle = mesh_construct_mesh(rightAngleTriangleVerts, 3, rightAngleTriangleIndices, 3);
 
@@ -103,10 +81,12 @@ int main()
 	mesh_scale(rightAngleTriangle, rat_scale);
 
 	// isosceles triangle
-	Vertex isoscelesTriangleVert1 = { .position = {0.0, 1.0, 1.0}, . colour = {1.0, 0.0, 0.0, 1.0} };
-	Vertex isoscelesTriangleVert2 = { .position = {-0.5, -1.0, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
-	Vertex isoscelesTriangleVert3 = { .position = {0.5, -1.0, 1.0}, . colour = {0.0, 0.0, 1.0, 1.0} };
-	Vertex isoscelesTriangleVerts[3] = { isoscelesTriangleVert1, isoscelesTriangleVert2, isoscelesTriangleVert3 };
+	Vertex isoscelesTriangleVerts[3] =
+	{
+		[0].position = {0.0, 1.0, 1.0},		[0].colour = {1.0, 0.0, 0.0, 1.0},
+		[1].position = {-0.5, -1.0, 1.0},	[1].colour = {0.0, 1.0, 0.0, 1.0},
+		[2].position = {0.5, -1.0, 1.0},	[2].colour = {0.0, 0.0, 1.0, 1.0}
+	};
 	GLuint isoscelesTriangleIndices[3] = { 0, 1, 2 };
 	Mesh* isoscelesTriangle = mesh_construct_mesh(isoscelesTriangleVerts, 3, isoscelesTriangleIndices, 3);
 
@@ -116,11 +96,13 @@ int main()
 	mesh_scale(isoscelesTriangle, it_scale);
 
 	// square
-	Vertex squareVert1 = { .position = {-0.5, 0.5, 1.0}, . colour = {1.0, 0.0, 0.0, 1.0} };
-	Vertex squareVert2 = { .position = {-0.5, -0.5, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
-	Vertex squareVert3 = { .position = {0.5, -0.5, 1.0}, . colour = {0.0, 0.0, 1.0, 1.0} };
-	Vertex squareVert4 = { .position = {0.5, 0.5, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
-	Vertex squareVerts[4] = { squareVert1, squareVert2, squareVert3, squareVert4 };
+	Vertex squareVerts[4] = 
+	{ 
+		[0] .position = {-0.5, 0.5, 1.0},	[0].colour = {1.0, 0.0, 0.0, 1.0},
+		[1].position = {-0.5, -0.5, 1.0},	[1].colour = {0.0, 1.0, 0.0, 1.0},
+		[2].position = {0.5, -0.5, 1.0},	[2].colour = {0.0, 0.0, 1.0, 1.0},
+		[3].position = {0.5, 0.5, 1.0},		[3].colour = {0.25, 0.5, 0.75, 1.0} 
+	};
 	GLuint squareIndices[6] = { 0, 1, 3, 1, 2, 3 }; 
 	Mesh* square = mesh_construct_mesh(squareVerts, 4, squareIndices, 6);
 
@@ -130,13 +112,15 @@ int main()
 	mesh_scale(square, s_scale);
 
 	// hexagon
-	Vertex hexagonVert1 = { .position = {-0.125, 0.25, 1.0}, . colour = {1.0, 0.0, 0.0, 1.0} };
-	Vertex hexagonVert2 = { .position = {-0.25, 0.0, 1.0}, . colour = {0.0, 1.0, 0.0, 1.0} };
-	Vertex hexagonVert3 = { .position = {-0.125, -0.25, 1.0}, . colour = {0.0, 0.0, 1.0, 1.0} };
-	Vertex hexagonVert4 = { .position = {0.125, -0.25, 1.0}, . colour = {1.0, 1.0, 0.0, 1.0} };
-	Vertex hexagonVert5 = { .position = {0.25, 0.0, 1.0}, . colour = {0.0, 1.0, 1.0, 1.0} };
-	Vertex hexagonVert6 = { .position = {0.125, 0.25, 1.0}, . colour = {1.0, 0.0, 1.0, 1.0} };
-	Vertex hexagonVerts[6] = { hexagonVert1, hexagonVert2, hexagonVert3, hexagonVert4, hexagonVert5, hexagonVert6 };
+	Vertex hexagonVerts[6] = 
+	{
+		[0].position = {-0.125, 0.25, 1.0},		[0].colour = {1.0, 0.0, 0.0, 1.0},
+		[1].position = {-0.25, 0.0, 1.0},		[1].colour = {0.0, 1.0, 0.0, 1.0},
+		[2].position = {-0.125, -0.25, 1.0},	[2].colour = {0.0, 0.0, 1.0, 1.0},
+		[3].position = {0.125, -0.25, 1.0},		[3].colour = {1.0, 1.0, 0.0, 1.0},
+		[4].position = {0.25, 0.0, 1.0},		[4].colour = {0.0, 1.0, 1.0, 1.0},
+		[5].position = {0.125, 0.25, 1.0},		[5].colour = {1.0, 0.0, 1.0, 1.0}
+	};
 	GLuint hexagonIndices[12] = { 0, 1, 5, 1, 4, 5, 1, 3, 4, 1, 2, 3 };
 	Mesh* hexagon = mesh_construct_mesh(hexagonVerts, 6, hexagonIndices, 12);
 
@@ -163,6 +147,7 @@ int main()
 
 	Shader* shader = shader_construct_shader_program("shaders/simple");
 
+	// camera matrix stuff
 	mat4 viewMatrix;
 	vec3 cameraPosition = { 0.0f, 0.0f, 0.0f };
 	vec3 cameraDirection = { 0.0f, 0.0f, -1.0f };
@@ -179,6 +164,7 @@ int main()
 			glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
 			glfwPollEvents();
 
+			// update uniforms then render each mesh before moving to next mesh
 			gameloop_update_mesh(shader->programID, rightAngleTriangle, viewMatrix);
 			gameloop_render_mesh(shader->programID, rightAngleTriangle);
 
@@ -200,9 +186,11 @@ int main()
 			mesh_unbind_vao();
 			shader_deactivate_shader_program();
 
+			// user presses escape to close program and free memory
 			if (glfwGetKey(window, GLFW_KEY_ESCAPE)) gameplayLoop = false;
 		}
 
+		// free allocated memory
 		free(rightAngleTriangle);
 		free(isoscelesTriangle);
 		free(square);
@@ -213,124 +201,3 @@ int main()
 		
 		return 0;
 }
-
-//
-//int main(void)
-//{
-//	
-//
-//	// Initialize GLFW
-//	int glfwSuccess = glfwInit();
-//	if (glfwSuccess != GLFW_TRUE)
-//	{
-//		printf("GLFW initialization failed\n");
-//		return 1;
-//	}
-//	
-//	// Set up window for OpenGL 3.3
-//	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-//	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-//	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-//	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-//
-//	// Create window
-//	GLFWwindow* window = glfwCreateWindow(512, 512, "Vanguard", NULL, NULL);
-//	if (window == NULL)
-//	{
-//		printf("GLFW failed to create window\n");
-//		return 2;
-//	}
-//	glfwMakeContextCurrent(window);
-//
-//	// Set up glew
-//	glewExperimental = GL_TRUE;
-//	GLenum glewSuccess = glewInit();
-//	if (glewSuccess != GLEW_OK)
-//	{
-//		printf("glew initialization failed\n");
-//		printf("%s\n", glewGetErrorString(glewSuccess));
-//		return 3;
-//	}
-//
-//	// OpenGL debugging
-//	glEnable(GL_DEBUG_OUTPUT);
-//	glDebugMessageCallback(gl_debug_message_callback, 0);
-//	glfwSetErrorCallback(glfw_onError);
-//
-//	// Set up face culling
-//	//glFrontFace(GL_CCW);
-//
-//	// 3D stuff
-//	//glEnable(GL_DEPTH_TEST);
-//	//glDepthFunc(GL_LESS);
-//
-//	//Vertex vertices[] = {};
-//
-//	//Mesh* firstMesh = mesh_construct_mesh()
-//
-//	//Vertex* v = vertex_construct_vertex(vertex_construct_position(1.0f, 1.0f, 1.0f), vertex_construct_normal(1.0f, 1.0f, 1.0f), vertex_construct_colour(1.0f, 1.0f, 1.0f, 1.0f), vertex_construct_uvcoord(1.0f, 1.0f));
-//
-//	/*Vertex* vert = vertex_construct_vertex(
-//					vertex_construct_position(0.1f, 0.2f, 0.3f),
-//					vertex_construct_normal(0.4f, 0.5f, 0.6f),
-//					vertex_construct_colour(0.7f, 0.8f, 0.90f, 1.0f),
-//					vertex_construct_uvcoord(1.1f, 1.2f)
-//					);
-//
-//	free(vert);
-//
-//	Vertex verts[5] = {
-//		{vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))},
-//		{vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))},
-//		{vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))},
-//		{vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))},
-//		{vertex_construct_vertex(vertex_construct_position(0.1f, 0.2f, 0.3f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.1f, 0.2f, 0.3f, 0.4f), vertex_construct_uvcoord(0.1f, 0.2f))}
-//	};*/
-//
-//	Vertex* triangleVertices[3] = {
-//		{vertex_construct_vertex(vertex_construct_position(-1.0f, -1.0f, 1.0f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.0f, 0.0f, 0.0f, 1.0f), vertex_construct_uvcoord(0.0f, 0.0f))},
-//		{vertex_construct_vertex(vertex_construct_position(1.0f, -1.0f, 1.0f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.0f, 0.0f, 0.0f, 1.0f), vertex_construct_uvcoord(1.0f, 0.0f))},
-//		{vertex_construct_vertex(vertex_construct_position(0.0f, 1.0f, 1.0f), vertex_construct_normal(0.1f, 0.2f, 0.3f), vertex_construct_colour(0.0f, 0.0f, 0.0f, 1.0f), vertex_construct_uvcoord(0.5f, 1.0f))}
-//	};
-//
-//	GLuint triangleIndices[3] = { 0, 1, 2 };
-//
-//	Texture* triangleTextures[2] = { texture_construct_texture("textures/planks.png", "diffuse", 0), texture_construct_texture("textures/planksSpec.png", "specular", 1) };
-//
-//	/*printf("main: x = %.1f, y = %.1f, z = %.1f\n", triangleVertices[0]->position->x, triangleVertices[0]->position->y, triangleVertices[0]->position->z);
-//	printf("main: x = %.1f, y = %.1f, z = %.1f\n", triangleVertices[1]->position->x, triangleVertices[1]->position->y, triangleVertices[1]->position->z);
-//	printf("main: x = %.1f, y = %.1f, z = %.1f\n", triangleVertices[2]->position->x, triangleVertices[2]->position->y, triangleVertices[2]->position->z);*/
-//
-//	Mesh* triangleMesh = mesh_construct_mesh(triangleVertices, 3, triangleIndices, 3, triangleTextures, 2);
-//
-//	//VAO* vao = vao_construct_vao();
-//	//VAO* vao2 = vao_construct_vao();
-//
-//	//mesh_cleanup(triangleMesh);
-//	// having these causes errors?
-//	//free(triangleMesh);
-//	//free(triangleVertices);
-//	//free(triangleTextures);
-//	//free(triangleIndices);
-//
-//	Shader* basicShader = shader_construct_shader_program("shaders/basic");
-//
-//	bool gameplayLoop = true;
-//
-//	while (gameplayLoop)
-//	{
-//		glfwSwapBuffers(window);
-//		glClearColor(0.0f, 0.0f, 1.0f, 1.0f);
-//		glClear(GL_COLOR_BUFFER_BIT /*| GL_DEPTH_BUFFER_BIT*/);
-//		glfwPollEvents();
-//		//updates
-//		//render
-//		render(basicShader->programID, triangleMesh, 3);
-//		glBindVertexArray(0);
-//		glUseProgram(0);
-//	}
-//
-//	//free(triangleMesh);
-//
-//	return 0;
-//}

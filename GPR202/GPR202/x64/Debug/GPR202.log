@@ -34,17 +34,23 @@ E:\GitHub\GPR202\GPR202\GPR202\mesh.h(12,17): warning C4820: 'Mesh': '4' bytes p
 E:\GitHub\GPR202\GPR202\GPR202\mesh.h(26,28): warning C4255: 'mesh_construct_vao': no function prototype given: converting '()' to '(void)'
 E:\GitHub\GPR202\GPR202\GPR202\mesh.h(31,23): warning C4255: 'mesh_unbind_vao': no function prototype given: converting '()' to '(void)'
 E:\GitHub\GPR202\GPR202\GPR202\shader.h(16,40): warning C4255: 'shader_deactivate_shader_program': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(30,23): warning C4100: 'error': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(34,145): warning C4100: 'unused4': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(34,101): warning C4100: 'unused3': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(34,67): warning C4100: 'unused2': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(34,39): warning C4100: 'unused': unreferenced formal parameter
-E:\GitHub\GPR202\GPR202\GPR202\main.c(46,1): warning C4255: 'main': no function prototype given: converting '()' to '(void)'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(100,25): warning C4305: 'initializing': truncation from 'double' to 'float'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(113,24): warning C4305: 'initializing': truncation from 'double' to 'float'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(127,23): warning C4305: 'initializing': truncation from 'double' to 'float'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(143,23): warning C4305: 'initializing': truncation from 'double' to 'float'
-E:\GitHub\GPR202\GPR202\GPR202\main.c(38): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
-E:\GitHub\GPR202\GPR202\GPR202\main.c(36): message : index 'severity' range checked by comparison on this line
-E:\GitHub\GPR202\GPR202\GPR202\main.c(38): message : feeds call on this line
+E:\GitHub\GPR202\GPR202\GPR202\main.c(10,23): warning C4100: 'error': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(14,145): warning C4100: 'unused4': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(14,101): warning C4100: 'unused3': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(14,67): warning C4100: 'unused2': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(14,39): warning C4100: 'unused': unreferenced formal parameter
+E:\GitHub\GPR202\GPR202\GPR202\main.c(26,1): warning C4255: 'main': no function prototype given: converting '()' to '(void)'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(82,25): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(97,24): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(113,23): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(138,23): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\GitHub\GPR202\GPR202\GPR202\main.c(123,9): warning C4189: 'hexagonVert5': local variable is initialized but not referenced
+E:\GitHub\GPR202\GPR202\GPR202\main.c(120,9): warning C4189: 'hexagonVert2': local variable is initialized but not referenced
+E:\GitHub\GPR202\GPR202\GPR202\main.c(122,9): warning C4189: 'hexagonVert4': local variable is initialized but not referenced
+E:\GitHub\GPR202\GPR202\GPR202\main.c(121,9): warning C4189: 'hexagonVert3': local variable is initialized but not referenced
+E:\GitHub\GPR202\GPR202\GPR202\main.c(124,9): warning C4189: 'hexagonVert6': local variable is initialized but not referenced
+E:\GitHub\GPR202\GPR202\GPR202\main.c(119,9): warning C4189: 'hexagonVert1': local variable is initialized but not referenced
+E:\GitHub\GPR202\GPR202\GPR202\main.c(18): warning C5045: Compiler will insert Spectre mitigation for memory load if /Qspectre switch specified
+E:\GitHub\GPR202\GPR202\GPR202\main.c(16): message : index 'severity' range checked by comparison on this line
+E:\GitHub\GPR202\GPR202\GPR202\main.c(18): message : feeds call on this line
   GPR202.vcxproj -> E:\GitHub\GPR202\GPR202\x64\Debug\GPR202.exe
