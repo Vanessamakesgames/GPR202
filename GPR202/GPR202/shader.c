@@ -30,7 +30,6 @@ Shader* shader_construct_shader_program(const char* _fileName)
 
 		int bytesRead = fread(buffer, sizeof(char), BUFFER_SIZE, file);
 		buffer[bytesRead] = 0;
-		printf("%s\n", buffer);
 		fclose(file);
 
 		const char* source_c_str = buffer;
@@ -67,7 +66,6 @@ Shader* shader_construct_shader_program(const char* _fileName)
 		
 		int bytesRead = fread(buffer, sizeof(char), BUFFER_SIZE, file);
 		buffer[bytesRead] = 0;
-		printf("%s\n", buffer);
 		fclose(file);
 		
 		const char* source_c_str = buffer;

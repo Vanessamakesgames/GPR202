@@ -59,7 +59,7 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
 	// Create window
-	GLFWwindow* window = glfwCreateWindow(512, 512, "Vanguard", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(512, 512, "GPR202 A1", NULL, NULL);
 	if (window == NULL)
 	{
 		printf("GLFW failed to create window\n");
@@ -97,7 +97,7 @@ int main()
 	GLuint rightAngleTriangleIndices[3] = { 0, 1, 2 };
 	Mesh* rightAngleTriangle = mesh_construct_mesh(rightAngleTriangleVerts, 3, rightAngleTriangleIndices, 3);
 
-	vec3 rat_translation = { -0.5, 0.5, 0.0 };
+	vec3 rat_translation = { -0.8, 0.5, 0.0 };
 	mesh_translate(rightAngleTriangle, rat_translation);
 	vec3 rat_scale = { 0.25, 0.25, 1 };
 	mesh_scale(rightAngleTriangle, rat_scale);
@@ -124,7 +124,7 @@ int main()
 	GLuint squareIndices[6] = { 0, 1, 3, 1, 2, 3 }; 
 	Mesh* square = mesh_construct_mesh(squareVerts, 4, squareIndices, 6);
 
-	vec3 s_translation = { 0.5, 0.5, 0.0 };
+	vec3 s_translation = { 0.8, 0.5, 0.0 };
 	mesh_translate(square, s_translation);
 	vec3 s_scale = { 0.25, 0.25, 1 };
 	mesh_scale(square, s_scale);
@@ -142,16 +142,24 @@ int main()
 
 	vec3 h_translation = { 0.8, -0.5, 0.0 };
 	mesh_translate(hexagon, h_translation);
-	vec3 h_scale = { 0.25, 0.25, 1 };
+	vec3 h_scale = { 0.5, 0.5, 1 };
 	mesh_scale(hexagon, h_scale);
 
 	// circle
 	Mesh* circle = mesh_construct_circle_mesh(0.75f, 50);
 
-	vec3 c_translation = { 0.0, -0.5, 0.0 };
+	vec3 c_translation = { 0.0, 0.5, 0.0 };
 	mesh_translate(circle, c_translation);
 	vec3 c_scale = { 0.25, 0.25, 1 };
 	mesh_scale(circle, c_scale);
+
+	// better circle
+	Mesh* betterCircle = mesh_construct_better_circle_mesh(0.75f, 50);
+
+	vec3 bc_translation = { 0.0, -0.5, 0.0 };
+	mesh_translate(betterCircle, bc_translation);
+	vec3 bc_scale = { 0.25, 0.25, 1 };
+	mesh_scale(betterCircle, bc_scale);
 
 	Shader* shader = shader_construct_shader_program("shaders/simple");
 
@@ -161,8 +169,6 @@ int main()
 	vec3 cameraUp = { 0.0f, 1.0f, 0.0f };
 	glm_mat4_identity(viewMatrix);
 	glm_look(cameraPosition, cameraDirection, cameraUp, viewMatrix);
-
-	
 
 	bool gameplayLoop = true;
 	
@@ -188,9 +194,22 @@ int main()
 			gameloop_update_mesh(shader->programID, circle, viewMatrix);			
 			gameloop_render_mesh(shader->programID, circle);
 
+			gameloop_update_mesh(shader->programID, betterCircle, viewMatrix);
+			gameloop_render_mesh(shader->programID, betterCircle);
+
 			mesh_unbind_vao();
 			shader_deactivate_shader_program();
+
+			if (glfwGetKey(window, GLFW_KEY_ESCAPE)) gameplayLoop = false;
 		}
+
+		free(rightAngleTriangle);
+		free(isoscelesTriangle);
+		free(square);
+		free(hexagon);
+		free(circle);
+		free(betterCircle);
+		free(shader);
 		
 		return 0;
 }

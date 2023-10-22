@@ -46,13 +46,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="shaders\basic.vert">
+    <None Include="shaders\simple.vert">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shaders\basic.frag">
+    <None Include="shaders\simple.frag">
       <Filter>Shaders</Filter>
     </None>
-    <None Include="shaders\simple.frag" />
-    <None Include="shaders\simple.vert" />
   </ItemGroup>
 </Project>

@@ -96,6 +96,68 @@ Mesh* mesh_construct_circle_mesh(float _radius, int _numberOfVertices)
 	return mesh;
 }
 
+Mesh* mesh_construct_better_circle_mesh(float _radius, int _numberOfVertices)
+{
+	const float PI = 3.1415926f;
+	Mesh* mesh = (Mesh*)malloc(sizeof(Mesh));
+	mesh->vertices = (Vertex*)malloc(sizeof(Vertex) * _numberOfVertices + 1);
+	int numberOfTriangles = _numberOfVertices;
+	mesh->numberOfVertices = _numberOfVertices + 1;
+	mesh->numberOfIndices = numberOfTriangles * 3;
+	mesh->indices = (GLuint*)malloc(sizeof(GLuint) * mesh->numberOfIndices);
+	float theta = 360 / _numberOfVertices;
+	const double convertDegreesToRadians = PI / 180;
+
+	glm_mat4_identity(mesh->translation);
+	glm_mat4_identity(mesh->rotation);
+	glm_mat4_identity(mesh->scale);
+
+	float red = 0.25f;
+	float green = 0.5f;
+	float blue = 0.75f;
+
+	Vertex centerVert = { .position = {0.0, 0.0, 1.0,}, .colour = {red, green, blue, 1.0} };
+	mesh->vertices[0] = centerVert;
+
+	for (int i = 0; i < _numberOfVertices; i++)
+	{
+		float x = _radius * cosf(i * (theta * convertDegreesToRadians));
+		float y = _radius * sinf(i * (theta * convertDegreesToRadians));
+
+		red += 0.25f;
+		if (red > 1.0) red = 0.0f;
+		green += 0.25f;
+		if (green > 1.0f) green = 0.0f;
+		blue += 0.25;
+		if (blue > 1.0f) blue = 0.0f;
+
+		Vertex vert = { .position = {x, y, 1.0}, .colour = {red, green, blue, 1.0} };
+		mesh->vertices[i + 1] = vert;
+	}
+
+	for (int i = 0; i < numberOfTriangles; i++)
+	{
+		mesh->indices[i * 3] = 0;
+		mesh->indices[(i * 3) + 1] = i + 1;
+		if (i == numberOfTriangles - 1) mesh->indices[(i * 3) + 2] = 1;
+		else mesh->indices[(i * 3) + 2] = i + 2;
+	}
+
+	mesh->vaoID = mesh_construct_vao();
+	GLuint vbo = mesh_construct_vbo(mesh->vertices, mesh->numberOfVertices);
+	GLuint ebo = mesh_construct_ebo(mesh->indices, mesh->numberOfIndices);
+
+	mesh_bind_buffer(GL_ARRAY_BUFFER, vbo);
+	mesh_link_attributes(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
+	mesh_link_attributes(1, 4, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)(4 * sizeof(float)));
+
+	mesh_unbind_vao();
+	mesh_unbind_buffer(GL_ARRAY_BUFFER);
+	mesh_unbind_buffer(GL_ELEMENT_ARRAY_BUFFER);
+
+	return mesh;
+}
+
 void mesh_translate(Mesh* _mesh, vec3 _translation)
 {
 	glm_translate(_mesh->translation, _translation);

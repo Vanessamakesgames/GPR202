@@ -19,6 +19,7 @@ typedef struct Mesh
 
 Mesh* mesh_construct_mesh(Vertex _vertices[], int _numberOfVertices, GLuint _indices[], int _numberOfIndices);
 Mesh* mesh_construct_circle_mesh(float _radius, int _numberOfVertices);
+Mesh* mesh_construct_better_circle_mesh(float _radius, int _numberOfVertices);
 void mesh_translate(Mesh* _mesh, vec3 _translation);
 void mesh_rotate(Mesh* _mesh, vec3 _rotation);
 void mesh_scale(Mesh* _mesh, vec3 _scale);
